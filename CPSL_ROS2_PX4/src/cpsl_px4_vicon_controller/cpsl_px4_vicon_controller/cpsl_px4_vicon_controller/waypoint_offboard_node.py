@@ -465,8 +465,8 @@ class WaypointOffboard(Node):
         super().__init__('waypoint_offboard')
 
         # ---------------- Parameters (waypoints are HARDCODED) ----------------
-        self.declare_parameter('xy_accept', 0.10)  # m
-        self.declare_parameter('z_accept', 0.08)   # m
+        self.declare_parameter('xy_accept', 0.30)  # originally: 0.10 m. switched to .30m to handle more variation
+        self.declare_parameter('z_accept', 0.20)   # originally: 0.08. switched to .20m to handle more variation
         self.declare_parameter('hold_time', 10.0)   # s
         self.declare_parameter('publish_rate_hz', 20.0)
         self.declare_parameter('auto_arm', True)
@@ -475,7 +475,7 @@ class WaypointOffboard(Node):
         # --- Takeoff options ---
         self.declare_parameter('enable_takeoff', True)
         self.declare_parameter('takeoff_height_m', 0.6)
-        self.declare_parameter('takeoff_hold_s', 10.0)
+        self.declare_parameter('takeoff_hold_s', 5.0) # originally: 10.0 s. switched to 5.0 s to handle more variation
 
         # -------- Hardcoded mission (no YAML for waypoints) --------
         waypoints_ned: List[Waypoint] = build_hardcoded_waypoints()
